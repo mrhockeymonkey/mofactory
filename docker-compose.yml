@@ -1,0 +1,43 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    hostname: rmq1
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      main:
+        ipv4_address: 172.16.0.2
+  dash:
+    build: ./MoFactory/mofactory.dashboard
+    ports:
+      - "5000:5000"
+    depends_on:
+      - rabbitmq
+  factory:
+    build: ./MoFactory/mofactory.builder
+    depends_on:
+      - rabbitmq
+
+networks:
+  main:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.16.0.0/24
+  #web:
+  #  build: .
+  #  ports:
+  #  - "5000:5000"
+  #  volumes:
+  #  - .:/code
+  #  - logvolume01:/var/log
+  #  links:
+  #  - redis
+  #redis:
+  #  image: redis
+#volumes:
+#  logvolume01: {}

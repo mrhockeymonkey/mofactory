@@ -1,0 +1,6 @@
+[submodule ".\\src\\mofactory.builder\\RabbitMQTools"]
+	path = .\\src\\mofactory.builder\\RabbitMQTools
+	url = https://github.com/mrhockeymonkey/RabbitMQTools.git
+[submodule "RabbitMQTools"]
+	path = RabbitMQTools
+	url = https://github.com/mrhockeymonkey/RabbitMQTools.git
